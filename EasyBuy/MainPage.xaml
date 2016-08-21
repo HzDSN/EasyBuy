@@ -7,7 +7,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+        <Button VerticalAlignment="Top" Width="50" Height="50" Click="Button_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"></Button>
+        <WebView x:Name="webView" HorizontalAlignment="Stretch"  Margin="0,50,0,0" VerticalAlignment="Stretch" Visibility="Collapsed" />
+        <SplitView HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" OpenPaneLength="150" IsPaneOpen="False" x:Name="mySplit" DisplayMode="CompactOverlay" CompactPaneLength="0">
+            <SplitView.Pane>
+                <StackPanel>
+                    <Button VerticalAlignment="Top" Width="50" Height="50" Click="Button_Click_1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"/>
+                    <TextBlock FontSize="20" Tapped="TextBlock_Tapped">
+                        <Run Text="淘宝"/>
+                    </TextBlock>
+                    <TextBlock FontSize="20"/>
+                    <TextBlock FontSize="20" Tapped="TextBlock_Tapped_1">
+                        <Run Text="亚马逊"/>
+                    </TextBlock>
+
+                </StackPanel>
+            </SplitView.Pane>
+            <Grid/>
+        </SplitView>
+        <TextBox x:Name="textBox" HorizontalAlignment="Stretch" Margin="50,0,0,0" TextWrapping="Wrap" Text="在此输入搜索的东西，按回车结束" VerticalAlignment="Top" Height="50" KeyDown="textBox_KeyDown" />
     </Grid>
+
+
 </Page>

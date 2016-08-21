@@ -22,9 +22,83 @@ namespace EasyBuy
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        int SearchEngine = 1;
         public MainPage()
         {
             this.InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mySplit.IsPaneOpen = true;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            mySplit.IsPaneOpen = false;
+        }
+
+        private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            SearchEngine = 1;
+            mySplit.IsPaneOpen = false;
+            webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            if(textBox.Text != "在此输入搜索的东西，按回车结束")
+            {
+                webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+            }
+        }
+
+        private void TextBlock_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            //https://www.amazon.cn/s?field-keywords=test
+            SearchEngine = 2;
+            mySplit.IsPaneOpen = false;
+            webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            if (textBox.Text != "在此输入搜索的东西，按回车结束")
+            {
+                webView.Navigate(new Uri("https://www.amazon.cn/s?field-keywords=" + textBox.Text));
+            }
+        }
+
+        private void textBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            //textBox.Text = Convert.ToInt32(e.Key).ToString();
+            if(Convert.ToInt32(e.Key) == 13)
+            {
+                if(SearchEngine==1)
+                {
+                    TextBlock_Tapped();
+                }
+                else
+                {
+                    TextBlock_Tapped_1();
+                }
+            }
+        }
+
+        private void TextBlock_Tapped()
+        {
+            SearchEngine = 1;
+            mySplit.IsPaneOpen = false;
+            webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            if (textBox.Text != "在此输入搜索的东西，按回车结束")
+            {
+                webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+            }
+        }
+
+        private void TextBlock_Tapped_1()
+        {
+            //https://www.amazon.cn/s?field-keywords=test
+            SearchEngine = 2;
+            mySplit.IsPaneOpen = false;
+            webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            if (textBox.Text != "在此输入搜索的东西，按回车结束")
+            {
+                webView.Navigate(new Uri("https://www.amazon.cn/s?field-keywords=" + textBox.Text));
+            }
+        }
     }
 }
+
