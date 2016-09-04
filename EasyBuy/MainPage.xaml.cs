@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System.Profile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -45,7 +46,14 @@ namespace EasyBuy
             webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
             if(textBox.Text != "在此输入搜索的东西，按回车结束")
             {
-                webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+                if (!IsAcceptReturn)
+                {
+                    webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+                }
+                else
+                {
+                    webView.Navigate(new Uri("https://s.m.taobao.com/h5?q=" + textBox.Text));
+                }
             }
         }
 
@@ -84,7 +92,14 @@ namespace EasyBuy
             webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
             if (textBox.Text != "在此输入搜索的东西，按回车结束")
             {
-                webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+                if (!IsAcceptReturn)
+                {
+                    webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+                }
+                else
+                {
+                    webView.Navigate(new Uri("https://s.m.taobao.com/h5?q=" + textBox.Text));
+                }
             }
         }
 
@@ -97,6 +112,14 @@ namespace EasyBuy
             if (textBox.Text != "在此输入搜索的东西，按回车结束")
             {
                 webView.Navigate(new Uri("https://www.amazon.cn/s?field-keywords=" + textBox.Text));
+            }
+        }
+
+        public bool IsAcceptReturn
+        {
+            get
+            {
+                return AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile";
             }
         }
     }
