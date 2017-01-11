@@ -32,36 +32,63 @@ namespace EasyBuy
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             mySplit.IsPaneOpen = true;
+            Grid.SetColumn(webView, 2);
+            Grid.SetColumnSpan(webView, 1);
+            Grid.SetColumn(textBlock, 2);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             mySplit.IsPaneOpen = false;
+            Grid.SetColumn(webView, 0);
+            Grid.SetColumnSpan(webView, 3);
+            Grid.SetColumn(textBlock, 0);
         }
 
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            SearchEngine = 1;
-            mySplit.IsPaneOpen = false;
-            webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            if(textBox.Text != "在此输入搜索的东西，按回车结束")
+            if (IsAcceptReturn)
             {
-                if (!IsAcceptReturn)
+                SearchEngine = 1;
+                mySplit.IsPaneOpen = false;
+                webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                if (textBox.Text != "在此输入搜索的东西，按回车结束")
                 {
-                    webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
-                }
-                else
-                {
-                    webView.Navigate(new Uri("https://s.m.taobao.com/h5?q=" + textBox.Text));
+                    //if (!IsAcceptReturn)
+                    //{
+                       // webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+                    //}
+                   // else
+                    //{
+                        webView.Navigate(new Uri("https://s.m.taobao.com/h5?q=" + textBox.Text));
+                    //}
                 }
             }
+            else
+            {
+                SearchEngine = 1;
+                //mySplit.IsPaneOpen = false;
+                webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                if (textBox.Text != "在此输入搜索的东西，按回车结束")
+                {
+                    //if (!IsAcceptReturn)
+                    //{
+                   webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+                    //}
+                    // else
+                    //{
+                    //webView.Navigate(new Uri("https://s.m.taobao.com/h5?q=" + textBox.Text));
+                    //}
+                }
+            }
+                
         }
 
         private void TextBlock_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
             //https://www.amazon.cn/s?field-keywords=test
             SearchEngine = 2;
-            mySplit.IsPaneOpen = false;
+            if (IsAcceptReturn) mySplit.IsPaneOpen = false;
             webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
             if (textBox.Text != "在此输入搜索的东西，按回车结束")
             {
@@ -87,18 +114,38 @@ namespace EasyBuy
 
         private void TextBlock_Tapped()
         {
-            SearchEngine = 1;
-            mySplit.IsPaneOpen = false;
-            webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            if (textBox.Text != "在此输入搜索的东西，按回车结束")
+            if (IsAcceptReturn)
             {
-                if (!IsAcceptReturn)
+                SearchEngine = 1;
+                mySplit.IsPaneOpen = false;
+                webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                if (textBox.Text != "在此输入搜索的东西，按回车结束")
                 {
-                    webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
-                }
-                else
-                {
+                    //if (!IsAcceptReturn)
+                    //{
+                    // webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+                    //}
+                    // else
+                    //{
                     webView.Navigate(new Uri("https://s.m.taobao.com/h5?q=" + textBox.Text));
+                    //}
+                }
+            }
+            else
+            {
+                SearchEngine = 1;
+                mySplit.IsPaneOpen = false;
+                webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                if (textBox.Text != "在此输入搜索的东西，按回车结束")
+                {
+                    //if (!IsAcceptReturn)
+                    //{
+                    webView.Navigate(new Uri("https://s.taobao.com/search?q=" + textBox.Text));
+                    //}
+                    // else
+                    //{
+                    //webView.Navigate(new Uri("https://s.m.taobao.com/h5?q=" + textBox.Text));
+                    //}
                 }
             }
         }
@@ -107,7 +154,7 @@ namespace EasyBuy
         {
             //https://www.amazon.cn/s?field-keywords=test
             SearchEngine = 2;
-            mySplit.IsPaneOpen = false;
+            if (IsAcceptReturn) mySplit.IsPaneOpen = false;
             webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
             if (textBox.Text != "在此输入搜索的东西，按回车结束")
             {

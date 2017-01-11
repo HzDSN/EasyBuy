@@ -9,14 +9,23 @@
 
 
     <Grid Background="#FFFFFF" >
-        <!--Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"-->
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Stretch" Margin="0,50,0,0" TextWrapping="Wrap" Text="本项目由Songning Dong维护。欢迎UWP爱好者贡献代码。" VerticalAlignment="Top" Height="590" />
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"-->
+        <TextBlock x:Name="textBlock" Text="本项目由Songning Dong维护。欢迎UWP爱好者贡献代码。" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
         <!--Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"-->
         <Button VerticalAlignment="Top" Width="50" Height="50" Click="Button_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"/>
-        <WebView x:Name="webView" HorizontalAlignment="Stretch"  Margin="0,50,0,0" VerticalAlignment="Stretch" Visibility="Collapsed" />
+        <WebView x:Name="webView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed" />
 
-        <SplitView HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" OpenPaneLength="150" IsPaneOpen="False" x:Name="mySplit" DisplayMode="CompactOverlay" CompactPaneLength="0">
+        <SplitView Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" IsPaneOpen="False" x:Name="mySplit" DisplayMode="Inline" CompactPaneLength="0">
             <SplitView.Pane>
                 <StackPanel>
                     <Button VerticalAlignment="Top" Width="50" Height="50" Click="Button_Click_1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"/>
@@ -31,7 +40,7 @@
                 </StackPanel>
             </SplitView.Pane>
         </SplitView>
-        <TextBox x:Name="textBox" HorizontalAlignment="Stretch" Margin="50,0,0,0" TextWrapping="Wrap" Text="在此输入搜索的东西，按回车结束" VerticalAlignment="Top" Height="50" KeyDown="textBox_KeyDown" />
+        <TextBox x:Name="textBox" Text="在此输入搜索的东西，按回车结束" KeyDown="textBox_KeyDown" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Background="White"/>
     </Grid>
 
 
